@@ -1,0 +1,1 @@
+sudo apt install ros-humble-xacro ros-humble-joint-state-publisher-gui
