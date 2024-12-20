@@ -59,6 +59,8 @@ Visualization Manager:
           Value: true
         chassis:
           Value: true
+        laser_frame:
+          Value: true
         left_wheel:
           Value: true
         odom:
@@ -75,6 +77,8 @@ Visualization Manager:
           base_link:
             chassis:
               caster_wheel:
+                {}
+              laser_frame:
                 {}
             left_wheel:
               {}
@@ -110,6 +114,11 @@ Visualization Manager:
           Show Trail: false
           Value: true
         chassis:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        laser_frame:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -178,7 +187,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 9.651382446289062
+      Distance: 2.787951946258545
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -193,10 +202,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.785398006439209
+      Pitch: 0.660398006439209
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.785398006439209
+      Yaw: 0.705400824546814
     Saved: ~
 Window Geometry:
   Displays:

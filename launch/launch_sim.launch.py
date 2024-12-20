@@ -14,6 +14,8 @@ from launch_ros.actions import Node
 def generate_launch_description():
 
     package_name='diff_bot'
+    world_file_name = 'maze.world'
+    rviz_file_name = 'lidar_bot.rviz'
 
     rsp = IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
@@ -24,6 +26,7 @@ def generate_launch_description():
     gazebo = IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
                     get_package_share_directory('gazebo_ros'), 'launch', 'gazebo.launch.py')]),
+                launch_arguments={'world': os.path.join(get_package_share_directory(package_name), 'worlds', world_file_name)}.items()
              )
 
     # Run the spawner node from the gazebo_ros package. The entity name doesn't really matter if you only have a single robot.
@@ -31,10 +34,19 @@ def generate_launch_description():
                         arguments=['-topic', 'robot_description',
                                    '-entity', 'my_bot'],
                         output='screen')
+    
+     # Add the RViz node
+    rviz_config_file = os.path.join(
+        get_package_share_directory('diff_bot'), 'config', rviz_file_name)  # Adjust the path as necessary
+
+    rviz = Node(package='rviz2', executable='rviz2', 
+                     arguments=['-d', rviz_config_file],
+                     output='screen')
 
     # Launch them all!
     return LaunchDescription([
         rsp,
         gazebo,
         spawn_entity,
+        rviz,
     ])
