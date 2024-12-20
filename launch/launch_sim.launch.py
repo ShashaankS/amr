@@ -6,6 +6,7 @@ from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.substitutions import LaunchConfiguration
 
 from launch_ros.actions import Node
 
@@ -37,12 +38,12 @@ def generate_launch_description():
     
      # Add the RViz node
     rviz_config_file = os.path.join(
-        get_package_share_directory('diff_bot'), 'config', rviz_file_name)  # Adjust the path as necessary
-
+        get_package_share_directory('diff_bot'), 'config', rviz_file_name)
+     
     rviz = Node(package='rviz2', executable='rviz2', 
-                     arguments=['-d', rviz_config_file],
-                     output='screen')
-
+                arguments=['-d', rviz_config_file],
+                output='screen')
+    
     # Launch them all!
     return LaunchDescription([
         rsp,
